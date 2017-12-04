@@ -29,7 +29,7 @@ function test_success {
     cmd=$1
     shift
     [[ -z "$DEBUG" ]] || echo "executing success-command '$cmd $*' or message '$message'"
-    if "$cmd" "$@" 1>/dev/null; then
+    if $cmd "$@" 1>/dev/null 2>/dev/null; then
         success
     else
         fail "$message"
@@ -43,7 +43,7 @@ function test_fail {
     cmd=$1
     shift
     [[ -z "$DEBUG" ]] || echo "executing fail-command '$cmd $*' or message '$message'"
-    if "$cmd" "$@" 1>/dev/null; then
+    if $cmd "$@" 1>/dev/null 2>/dev/null; then
         fail "$message"
     else
         success
